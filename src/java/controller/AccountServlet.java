@@ -70,8 +70,8 @@ public class AccountServlet extends HttpServlet {
                 if (action == null) {
                     accounts = AccountDAO.getAccounts();
                     //printAccounts(request,response,accounts);
-                    request.setAttribute("accounts", accounts);
-                    RequestDispatcher rs = request.getRequestDispatcher("view/admin.jsp");
+                    request.setAttribute("user", user);
+                    RequestDispatcher rs = request.getRequestDispatcher("view/admin/admin.jsp");
                     rs.forward(request, response);
                  } 
             }
@@ -79,8 +79,8 @@ public class AccountServlet extends HttpServlet {
                 if (action == null) {
                     accounts = AccountDAO.getAccounts();
                     //printAccounts(request,response,accounts);
-                    request.setAttribute("accounts", accounts);
-                    RequestDispatcher rs = request.getRequestDispatcher("view/chairman.jsp");
+                    request.setAttribute("user", user);
+                    RequestDispatcher rs = request.getRequestDispatcher("view/chairman/chairman.jsp");
                     rs.forward(request, response);
                  } 
             } 

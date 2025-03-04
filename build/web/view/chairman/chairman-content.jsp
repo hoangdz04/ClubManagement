@@ -12,9 +12,10 @@
                             <i class="fas fa-bars"></i>
                         </button>
                         <div class="ml-5">
-                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">
-                                All Club Members
-                            </button>
+                            <form action="User" method="GET">
+                            <input type="hidden" name="action" value="clubUsers">
+                            <input type="submit"  class="bg-blue-600 text-white px-4 py-2 rounded-lg" value="All Club Members">                         
+                            </form>
                         </div>
                     </div>
                     <div class="flex items-center">
@@ -63,7 +64,7 @@
                                 An active club is a thriving community!
                             </p>
                         </div>
-                        <img class="w-1/3" height="200" src="../img/illus.png" width="500"/>
+                        <img class="w-1/3" height="200" src="${pageContext.request.contextPath}/img/illus.png" width="500"/>
                     </div>
                 </div>
             </div>

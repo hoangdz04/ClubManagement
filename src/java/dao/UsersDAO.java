@@ -38,6 +38,30 @@ public class UsersDAO {
         }
         return usersList;
     }
+    
+    //Lấy ra người dùng có clubId = 1 số cho trước
+    public List<Users> getUsersByClubId(int clubId) throws SQLException {
+    List<Users> usersList = new ArrayList<>();
+    String query = "SELECT * FROM Users WHERE clubId = ?";
+    
+    try (PreparedStatement ps = connection.prepareStatement(query)) {
+        ps.setInt(1, clubId);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Users user = new Users(
+                        rs.getInt("userId"),
+                        rs.getString("fullName"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getInt("roleId"),
+                        rs.getInt("clubId")
+                );
+                usersList.add(user);
+            }
+        }
+    }
+    return usersList;
+}
 
     // Thêm người dùng mới
     public void addUser(Users user) throws SQLException {

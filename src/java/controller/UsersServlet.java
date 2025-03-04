@@ -81,8 +81,11 @@ public class UsersServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
-                default:
+                case "list":
                     listUsers(request, response);
+                    break;
+                case "clubUsers":
+                    listClubUsers(request, response);
                     break;
             }
         } catch (SQLException e) {
@@ -114,6 +117,12 @@ public class UsersServlet extends HttpServlet {
         request.getRequestDispatcher("/view/users.jsp").forward(request, response);
     }
 
+    private void listClubUsers (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        List<Users> usersList = usersDAO.getUsersByClubId(1);
+        request.setAttribute("users", usersList);
+        request.getRequestDispatcher("/view/users.jsp").forward(request, response);
+    }
+    
     private void showForm(HttpServletRequest request, HttpServletResponse response, Users user) throws ServletException, IOException {
         request.setAttribute("user", user);
         request.getRequestDispatcher("/view/user-form.jsp").forward(request, response);

@@ -7,16 +7,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="bg-blue-900 text-white w-64 min-h-screen flex flex-col">
     <div class="flex items-center justify-center mt-10">
-        <img alt="Logo" class="w-12 h-12 rounded-full" src="../img/logo.jpg"/>
+        <img alt="Logo" class="w-12 h-12 rounded-full" src="${pageContext.request.contextPath}/img/logo.jpg"/>
         <div class="ml-2 text-2xl font-bold nav_logo">
             <a href="#">Club<span>Manager</span></a>
         </div>
     </div>
     <div class="flex items-center mt-10 px-5">
-        <img alt="User Avatar" class="w-12 h-12 rounded-full" src="../img/logo_admin.jpg"/>
+        <img alt="User Avatar" class="w-12 h-12 rounded-full" src="${pageContext.request.contextPath}/img/logo_admin.jpg"/>
         <div class="ml-3">
-            <p class="font-bold">Admin</p>
-            <p class="text-sm">System Administrator</p>
+            <p class="font-bold">${user.getFullName()}</p>
+            <p class="text-sm">Chairman</p>
         </div>
     </div>
     <nav class="mt-10">
@@ -25,13 +25,9 @@
                 <i class="fas fa-tachometer-alt"></i>
                 <span class="ml-3">Dashboard</span>
             </li>
-            <li class="flex items-center px-5 py-2 mt-2">
-                <i class="fas fa-users"></i>
-                <a href="clubs?action=list" class="ml-3">Club Management</a>
-            </li>
 
             <li class="flex items-center px-5 py-2 mt-2  cursor-pointer">
-                <a href="${pageContext.request.contextPath}/User" class="flex items-center w-full">
+                <a href="${pageContext.request.contextPath}/User?action=clubUsers" class="flex items-center w-full">
                     <i class="fas fa-user-cog"></i>
                     <span class="ml-3">User Management</span>
                 </a>
