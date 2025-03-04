@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import model.Users;
@@ -118,7 +119,9 @@ public class UsersServlet extends HttpServlet {
     }
 
     private void listClubUsers (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        List<Users> usersList = usersDAO.getUsersByClubId(1);
+        HttpSession session = request.getSession();
+        Users user = (Users)session.getAttribute("user");
+        List<Users> usersList = usersDAO.getUsersByClubId(user.getClubId());
         request.setAttribute("users", usersList);
         request.getRequestDispatcher("/view/users.jsp").forward(request, response);
     }

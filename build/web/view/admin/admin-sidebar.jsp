@@ -47,7 +47,7 @@
             </li>
         </ul>
     </nav>
-    <form action="/Club2/Logout" method="get" class="mt-auto mb-10 px-5">
+    <form action="Logout" method="get" class="mt-auto mb-10 px-5">
         <button class="w-full bg-red-600 text-white py-2 rounded-lg flex items-center justify-center">
             <i class="fas fa-sign-out-alt"></i>
             <input type="submit" value="Logout" class="ml-3 bg-transparent border-none cursor-pointer">
