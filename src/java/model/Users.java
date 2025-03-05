@@ -107,7 +107,21 @@ public class Users {
         return "Users{" + "userId=" + userId + ", fullName=" + fullName + ", email=" + email + ", password=" + password + ", roleId=" + roleId + ", clubId=" + clubId + ", clubName=" + clubName + '}';
     }
     
+    public boolean isAdmin() {
+        return this.roleId == 1;
+    }
 
-    
+    public boolean isChairman() {
+        return this.roleId == 2;
+    }
+
+    public boolean isTeamLeader() {
+        return this.roleId == 3;
+    }
+
+    public boolean isMember() {
+        return this.roleId == 4;
+    }
+
     
 }

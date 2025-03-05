@@ -71,8 +71,14 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        Users currentUser = (Users) session.getAttribute("user");
         if (action == null) {
             action = "list";
+        }
+        if (currentUser == null || (!currentUser.isAdmin() && !currentUser.isChairman())) {
+            response.sendRedirect("login.jsp");  
+        return;
         }
 
         try {
