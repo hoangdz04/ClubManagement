@@ -19,7 +19,7 @@
         <nav>
             <div class="nav_header">
                 <div class="nav_logo">
-                    <a href="#">Ctr+<span>Club</span></a>
+                    <a href="#">Ctr<span>Club+</span></a>
                 </div>
                 <div class="nav_menu_btn" id="menu-btn">
                     <span><i class="bi bi-list"></i></span>

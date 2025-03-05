@@ -15,6 +15,7 @@ public class Users {
     private String password;
     private int roleId;
     private int clubId;
+    private String clubName;
 
     public Users() {
     }
@@ -33,6 +34,16 @@ public class Users {
         this.password = password;
         this.roleId = roleId;
         this.clubId = clubId;
+    }
+    
+    public Users(int userId, String fullName, String email, String password, int roleId, int clubId, String clubName) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.roleId = roleId;
+        this.clubId = clubId;
+        this.clubName = clubName;
     }
 
     public int getUserId() {
@@ -83,10 +94,20 @@ public class Users {
         this.clubId = clubId;
     }
 
+    public String getClubName() {
+        return clubName;
+    }
+
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
+    }
+
     @Override
     public String toString() {
-        return "Users{" + "userId=" + userId + ", fullName=" + fullName + ", email=" + email + ", password=" + password + ", roleId=" + roleId + ", clubId=" + clubId + '}';
+        return "Users{" + "userId=" + userId + ", fullName=" + fullName + ", email=" + email + ", password=" + password + ", roleId=" + roleId + ", clubId=" + clubId + ", clubName=" + clubName + '}';
     }
+    
+
     
     
 }

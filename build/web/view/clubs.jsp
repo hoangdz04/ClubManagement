@@ -48,8 +48,8 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
             .table thead th {
-                background-color: #007bff;
-                color: white;
+                background-color: #343a40;
+                color: #fff;
             }
             .table tbody tr:hover {
                 background-color: #f1f1f1;
@@ -68,10 +68,10 @@
                
             }
             .btn-color:hover{
-                background-color: #0056b3;
-             
-                
+                background-color: #0056b3; 
             }
+            
+            
         </style>
 
     </head>

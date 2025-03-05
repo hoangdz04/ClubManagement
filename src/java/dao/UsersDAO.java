@@ -100,23 +100,76 @@ public class UsersDAO {
     }
 
     // Tìm người dùng theo ID
+//    public Users getUserById(int userId) throws SQLException {
+//        String query = "SELECT * FROM Users WHERE userId=?";
+//        try (PreparedStatement ps = connection.prepareStatement(query)) {
+//            ps.setInt(1, userId);
+//            try (ResultSet rs = ps.executeQuery()) {
+//                if (rs.next()) {
+//                    return new Users(
+//                            rs.getInt("userId"),
+//                            rs.getString("fullName"),
+//                            rs.getString("email"),
+//                            rs.getString("password"),
+//                            rs.getInt("roleId"),
+//                            rs.getInt("clubId")
+//                    );
+//                }
+//            }
+//        }
+//        return null;
+//    }
+    
     public Users getUserById(int userId) throws SQLException {
-        String query = "SELECT * FROM Users WHERE userId=?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setInt(1, userId);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return new Users(
-                            rs.getInt("userId"),
-                            rs.getString("fullName"),
-                            rs.getString("email"),
-                            rs.getString("password"),
-                            rs.getInt("roleId"),
-                            rs.getInt("clubId")
-                    );
-                }
+    String query = "SELECT u.userId, u.fullName, u.email, u.password, u.roleId, u.clubId, c.clubName " +
+                   "FROM users u LEFT JOIN clubs c ON u.clubId = c.clubId WHERE u.userId=?";
+    try (PreparedStatement ps = connection.prepareStatement(query)) {
+        ps.setInt(1, userId);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return new Users(
+                    rs.getInt("userId"),
+                    rs.getString("fullName"),
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    rs.getInt("roleId"),
+                    rs.getInt("clubId"),
+                    rs.getString("clubName") 
+                );
             }
         }
-        return null;
     }
+    return null;
+}
+    
+     public List<Users> searchUsers(String keyword) {
+    List<Users> users = new ArrayList<>();
+    String sql = """
+                 SELECT u.userId, u.fullName, u.email, u.password, u.roleId, u.clubId, c.clubName
+                                  FROM Users u LEFT JOIN Clubs c ON u.clubId = c.clubId 
+                                  WHERE u.fullName LIKE ? OR u.email LIKE ? OR c.clubName LIKE ? OR u.clubId LIKE ?
+                 """;
+    
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, "%" + keyword + "%");
+        stmt.setString(2, "%" + keyword + "%");
+        stmt.setString(3, "%" + keyword + "%");
+        stmt.setString(4, "%" + keyword + "%");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Users user = new Users();
+            user.setUserId(rs.getInt("userId"));
+            user.setFullName(rs.getString("fullName"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setRoleId(rs.getInt("roleId"));
+            user.setClubId(rs.getInt("clubId"));
+            user.setClubName(rs.getString("clubName"));
+            users.add(user);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return users;
+}
 }

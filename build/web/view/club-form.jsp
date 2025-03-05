@@ -94,12 +94,7 @@
 
     </head>
     <body class="d-flex vh-100 align-items-center justify-content-center">
-        <div class="d-flex w-75">
-            <a href="${pageContext.request.contextPath}/clubs?action=list" 
-               class="btn btn-secondary position-absolute" 
-               style="top: 20px; left: 20px;">
-                Return
-            </a>
+        <div class="d-flex w-75">         
             <div class="sidebar">
                 <h2>Club Management System</h2>
                 <p>"Great clubs start with great leaders. Take the first step in building a strong and inspiring community today!"</p>
@@ -127,7 +122,11 @@
                             <label class="form-label" for="establishedDate">Established Date</label>
                             <input class="form-control" type="date" name="establishedDate" id="establishedDate" value="<%= isEdit ? club.getEstablishedDate() : "" %>" required>
                         </div>
-                        <button class="btn btn-primary w-100" type="submit"><%= isEdit ? "Update Club" : "Add Club" %></button>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-primary btn-animate" type="submit"><%= isEdit ? "Update Club" : "Add Club" %></button>
+                            <a href="${pageContext.request.contextPath}/clubs?action=list" class="btn btn-primary">Return</a>
+                        </div>
                     </form>
                 </div>
             </div>
